@@ -1,0 +1,11 @@
+First Answer:
+
+SELECT cnt.Name FROM `Country` as cnt LEFT JOIN City as ci ON ci.CountryID = cnt.CountryID WHERE ci.Population > 300 GROUP by cnt.CountryId
+
+Second Answer:
+
+SELECT C.Name FROM Country as C 
+WHERE CountryID NOT IN (SELECT CountryID FROM City as Cy 
+LEFT JOIN Building as B On B.CityID = Cy.CityID 
+WHERE B.CityID = Cy.CityID
+GROUP By CountryID)
